@@ -1,0 +1,13 @@
+{
+  "name": "lds-lab04",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "pg": "^8.7.1",
+    "prompt-async": "^0.9.9",
+    "typeorm": "^0.2.38"
+  }
+}
