@@ -1,4 +1,4 @@
-const prompt = require("prompt-async");
+const prompt = require("prompt");
 
 class Input {
     Input() {
@@ -7,6 +7,15 @@ class Input {
 
     async getString(question = "input") {
         const result = await prompt.get([question]);
+        const input = result[question];
+        return input;
+    }
+
+    async getPassword(question = "input") {
+        const result = await prompt.get([{
+            name: question,
+            hidden: true,
+        },]);
         const input = result[question];
         return input;
     }

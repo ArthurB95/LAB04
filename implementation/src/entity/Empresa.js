@@ -1,13 +1,19 @@
-import { EntitySchema } from "typeorm";
+const EntitySchema = require("typeorm").EntitySchema;
 
-module.exports = new EntitySchema({
+module.exports = {
     name: "Empresa",
     tableName: "empresa",
     columns: {
         id: {
             primary: true,
             type: "uuid",
-            generated: true
+            // generated: true
+        },
+        id_usuario: {
+            type: "uuid",
+        },
+        nome: {
+            type: "varchar",
         },
     }
-});
+};

@@ -1,5 +1,9 @@
 const selectOption = require("../utils/selectOption");
 
+const input = require("../utils/input");
+const output = require("../utils/output");
+const logger = require("../utils/logger");
+
 const options = [
     {
         title: "<- Voltar",
@@ -12,9 +16,9 @@ const options = [
 ];
 
 class VantagemView {
-    async selectOption() {
+    async selectOption(connection) {
         const selectedOption = await selectOption(options);
-        await selectedOption.entrypoint();
+        if (selectedOption.entrypoint) await selectedOption.entrypoint(connection);
     }
 };
 

@@ -1,13 +1,13 @@
-import { EntitySchema } from "typeorm";
+const EntitySchema = require("typeorm").EntitySchema;
 
-module.exports = new EntitySchema({
+module.exports = {
     name: "Usuario",
     tableName: "usuario",
     columns: {
         id: {
             primary: true,
             type: "uuid",
-            generated: true
+            // generated: true
         },
         username: {
             type: "varchar",
@@ -15,10 +15,10 @@ module.exports = new EntitySchema({
             unique: true,
             nullable: false,
         },
-        password: {
+        senha: {
             type: "varchar",
             length: "100",
             nullable: false,
         }
     }
-});
+};

@@ -1,4 +1,6 @@
 const typeorm = require("typeorm");
+const EntitySchema = require("typeorm").EntitySchema;
+
 const dotenv = require("dotenv");
 const logger = require("./utils/logger");
 
@@ -24,6 +26,16 @@ async function setup() {
         ssl: {
             rejectUnauthorized: false,
         },
+        entities: [
+            new EntitySchema(require("./entity/Aluno")),
+            new EntitySchema(require("./entity/Carteira")),
+            new EntitySchema(require("./entity/Empresa")),
+            new EntitySchema(require("./entity/Professor")),
+            new EntitySchema(require("./entity/Resgate")),
+            new EntitySchema(require("./entity/Transacao")),
+            new EntitySchema(require("./entity/Usuario")),
+            new EntitySchema(require("./entity/Vantagem")),
+        ]
     });
 
     logger.log("Connected to database");
