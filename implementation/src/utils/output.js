@@ -8,7 +8,7 @@ class Output {
     }
 
     title(message) {
-        console.log("\n\x1b[1m", message, "\x1b[0m");
+        console.log("\n\n\n\x1b[1m", message, "\x1b[0m");
     }
 };
 
