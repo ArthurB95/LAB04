@@ -6,6 +6,9 @@ const input = require("../utils/input");
 const output = require("../utils/output");
 const logger = require("../utils/logger");
 
+const Storage = require('../storage');
+const storage = new Storage().getInstance();
+
 const options = [
     {
         title: "<- Voltar",
@@ -35,6 +38,7 @@ class UsuarioView {
 
         try {
             const usuario = await usuarioController.entrar(connection, username, senha);
+
             logger.success("Login realizado com sucesso!");
             logger.success(`Usuário: ${usuario.username} (${usuario.id})`);
         } catch (error) {

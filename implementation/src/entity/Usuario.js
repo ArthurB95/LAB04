@@ -19,6 +19,16 @@ module.exports = {
             type: "varchar",
             length: "100",
             nullable: false,
-        }
-    }
+        },
+    },
+    // relations: {
+    //     aluno: {
+    //         type: 'one-to-many',
+    //         target: 'Aluno',
+    //     },
+    //     professor: {
+    //         type: 'one-to-many',
+    //         target: 'Professor',
+    //     },
+    // }
 };

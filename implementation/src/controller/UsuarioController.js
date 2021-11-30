@@ -1,6 +1,9 @@
 const logger = require("../utils/logger");
 const uuid = require("../utils/uuid");
 
+const Storage = require('../storage');
+const storage = new Storage().getInstance();
+
 class UsuarioController {
     async entrar(connection, username, senha) {
         const usuarioRepository = connection.getRepository('Usuario');
@@ -15,7 +18,34 @@ class UsuarioController {
         if (usuarioRecord.senha !== senha) throw new Error("Senha inválida");
 
         usuarioRecord.senha = undefined;
+
+        storage.setUser(usuarioRecord);
+        await this.recuperarAluno(connection, usuarioRecord);
+        await this.recuperarProfessor(connection, usuarioRecord);
+
         return usuarioRecord;
+    }
+
+    async recuperarAluno(connection, usuario) {
+        const alunoRepository = connection.getRepository('Aluno');
+        const alunoRecord = await alunoRepository.findOne({
+            where: {
+                id_usuario: usuario.id,
+            },
+        });
+
+        if (alunoRecord) storage.setAluno(alunoRecord);
+    }
+
+    async recuperarProfessor(connection, usuario) {
+        const professorRepository = connection.getRepository('Professor');
+        const professorRecord = await professorRepository.findOne({
+            where: {
+                id_usuario: usuario.id,
+            },
+        });
+
+        if (professorRecord) storage.setProfessor(professorRecord);
     }
 
     async cadastrarAluno(connection, username, senha, dados) {

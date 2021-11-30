@@ -18,8 +18,20 @@ module.exports = {
         departamento: {
             type: "varchar",
         },
+        saldo: {
+            type: "float",
+            default: 0
+        },
         id_usuario: {
             type: "uuid",
         },
-    }
+    },
+    // relations: {
+    //     usuario: {
+    //         name: "id_usuario",
+    //         type: 'many-to-one',
+    //         target: 'professor',
+    //         joinColumn: true,
+    //     },
+    // },
 };
