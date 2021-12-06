@@ -36,11 +36,11 @@ module.exports = {
         },
     },
     // relations: {
-    //     usuario: {
-    //         name: "id_usuario",
-    //         type: 'many-to-one',
-    //         target: 'usuario',
-    //         joinColumn: true,
+    //     resgate: {
+    //         type: 'one-to-many',
+    //         target: 'resgate',
+    //         inverseSide: 'aluno',
+    //         columnName: 'id_aluno',
     //     },
     // },
 };

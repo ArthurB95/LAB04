@@ -15,5 +15,17 @@ module.exports = {
         id_vantagem: {
             type: "uuid",
         },
-    }
+    },
+    // relations: {
+    //     aluno: {
+    //         type: 'many-to-one',
+    //         target: 'aluno',
+    //         joinColumn: true,
+    //     },
+    //     vantagem: {
+    //         type: 'many-to-one',
+    //         target: 'vantagem',
+    //         joinColumn: true,
+    //     },
+    // },
 };

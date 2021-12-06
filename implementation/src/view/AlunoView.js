@@ -16,7 +16,7 @@ const options = [
     },
     {
         title: "Selecionar Vantagem",
-        entrypoint: null,
+        entrypoint: async (connection) => new AlunoView().selecionarVantagem(connection),
     },
     {
         title: "Consultar Saldo",
@@ -28,7 +28,7 @@ const options = [
     },
     {
         title: "Listar Resgates do Aluno",
-        entrypoint: null,
+        entrypoint: async (connection) => new AlunoView().listarResgates(connection),
     },
 ];
 
@@ -51,6 +51,43 @@ class AlunoView {
                 `${transacao.mensagem ? transacao.mensagem : "Sem mensagem"}
                 (${transacao.id})
             `);
+        });
+    }
+
+    async selecionarVantagem(connection) {
+        const aluno = storage.getAluno();
+        if (!aluno) {
+            logger.error("O usuário atual não é um aluno!");
+            return;
+        }
+
+        const vantagem = await input.getString("ID da Vantagem");
+
+        try {
+            await alunoController.selecionarVantagem(connection, aluno, vantagem);
+            logger.success("Vantagem selecionada com sucesso!");
+        } catch (error) {
+            logger.error(error);
+        }
+    }
+
+    async listarResgates(connection) {
+        const aluno = storage.getAluno();
+        if (!aluno) {
+            logger.error("O usuário atual não é um aluno!");
+            return;
+        }
+
+        const resgates = await alunoController.listarResgates(connection, aluno);
+
+        resgates.forEach(resgate => {
+            output.line(
+                `\n===` +
+                `\nCodigo (${resgate.codigo})` +
+                `\nVantagem (${resgate.id_vantagem})` +
+                `\nAluno (${resgate.id_aluno})` +
+                `\n===`
+            );
         });
     }
 };

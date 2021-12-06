@@ -18,6 +18,10 @@ class LocalStorage {
         this.professor = professor;
     }
 
+    setEmpresa(empresa) {
+        this.empresa = empresa;
+    }
+
     getUser() {
         return this.user;
     }
@@ -28,6 +32,10 @@ class LocalStorage {
 
     getProfessor() {
         return this.professor;
+    }
+
+    getEmpresa() {
+        return this.empresa;
     }
 }
 

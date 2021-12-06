@@ -22,6 +22,7 @@ class UsuarioController {
         storage.setUser(usuarioRecord);
         await this.recuperarAluno(connection, usuarioRecord);
         await this.recuperarProfessor(connection, usuarioRecord);
+        await this.recuperarEmpresa(connection, usuarioRecord);
 
         return usuarioRecord;
     }
@@ -35,6 +36,7 @@ class UsuarioController {
         });
 
         if (alunoRecord) storage.setAluno(alunoRecord);
+        else storage.setAluno(null);
     }
 
     async recuperarProfessor(connection, usuario) {
@@ -46,6 +48,19 @@ class UsuarioController {
         });
 
         if (professorRecord) storage.setProfessor(professorRecord);
+        else storage.setProfessor(null);
+    }
+
+    async recuperarEmpresa(connection, usuario) {
+        const empresaRepository = connection.getRepository('Empresa');
+        const empresaRecord = await empresaRepository.findOne({
+            where: {
+                id_usuario: usuario.id,
+            },
+        });
+
+        if (empresaRecord) storage.setEmpresa(empresaRecord);
+        else storage.setEmpresa(null);
     }
 
     async cadastrarAluno(connection, username, senha, dados) {
