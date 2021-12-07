@@ -12,6 +12,7 @@ const storage = new Storage().getInstance();
 const options = [
     {
         title: "<- Voltar",
+        addSpacing: true,
         entrypoint: () => { },
     },
     {

@@ -9,10 +9,12 @@ const logger = require("../utils/logger");
 const options = [
     {
         title: "<- Voltar",
+        addSpacing: true,
         entrypoint: () => { },
     },
     {
         title: "Enviar Pontos para Aluno",
+        addSpacing: true,
         entrypoint: async (connection) => new ProfessorView().transferirSaldo(connection),
     },
     {

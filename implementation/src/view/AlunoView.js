@@ -12,10 +12,12 @@ const storage = new Storage().getInstance();
 const options = [
     {
         title: "<- Voltar",
+        addSpacing: true,
         entrypoint: () => { },
     },
     {
         title: "Selecionar Vantagem",
+        addSpacing: true,
         entrypoint: async (connection) => new AlunoView().selecionarVantagem(connection),
     },
     {
@@ -27,7 +29,7 @@ const options = [
         entrypoint: async (connection) => new AlunoView().listarTransacoes(connection),
     },
     {
-        title: "Listar Resgates do Aluno",
+        title: "Listar Resgates",
         entrypoint: async (connection) => new AlunoView().listarResgates(connection),
     },
 ];

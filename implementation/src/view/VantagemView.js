@@ -12,15 +12,17 @@ const storage = new Storage().getInstance();
 const options = [
     {
         title: "<- Voltar",
+        addSpacing: true,
         entrypoint: () => { },
+    },
+    {
+        title: "Cadastrar Vantagem",
+        addSpacing: true,
+        entrypoint: async (connection) => new VantagemView().cadastrar(connection),
     },
     {
         title: "Listar Vantagens",
         entrypoint: async (connection) => new VantagemView().listarTransacoes(connection),
-    },
-    {
-        title: "Cadastrar Vantagem",
-        entrypoint: async (connection) => new VantagemView().cadastrar(connection),
     },
 ];
 
