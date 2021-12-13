@@ -60,7 +60,7 @@ class AlunoController {
             id_vantagem: vantagemId,
         });
 
-        alunoRecord.saldo -= vantagemRecord.saldo;
+        alunoRecord.saldo -= vantagemRecord.valor;
         await alunoRepository.update(aluno.id, alunoRecord);
 
         return newResgate;
@@ -68,12 +68,21 @@ class AlunoController {
 
     async listarResgates(connection, aluno) {
         const resgateRepository = connection.getRepository('Resgate');
+        const vantagemRepository = connection.getRepository('Vantagem');
 
         const resgates = await resgateRepository.find({
             where: {
                 id_aluno: aluno.id
             },
         });
+
+        for (const resgate of resgates) {
+            resgate.vantagem = await vantagemRepository.findOne({
+                where: {
+                    id: resgate.id_vantagem
+                }
+            });
+        }
 
         return resgates;
     }

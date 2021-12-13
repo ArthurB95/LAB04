@@ -83,12 +83,11 @@ class AlunoView {
         const resgates = await alunoController.listarResgates(connection, aluno);
 
         resgates.forEach(resgate => {
+            const vantagem = resgate.vantagem || {};
+
             output.line(
-                `\n===` +
-                `\nCodigo (${resgate.codigo})` +
-                `\nVantagem (${resgate.id_vantagem})` +
-                `\nAluno (${resgate.id_aluno})` +
-                `\n===`
+                `\n${vantagem.titulo} (${vantagem.valor} pontos)` +
+                `\n\x1b[2m${resgate.codigo}\x1b[0m`
             );
         });
     }
